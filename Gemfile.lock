@@ -78,8 +78,6 @@ GEM
       mutex_m
       securerandom (>= 0.3)
       tzinfo (~> 2.0)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
     benchmark (0.4.0)
@@ -106,9 +104,6 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json-schema (5.1.1)
-      addressable (~> 2.8)
-      bigdecimal (~> 3.1)
     logger (1.6.6)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -156,7 +151,6 @@ GEM
     psych (5.2.3)
       date
       stringio
-    public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -221,17 +215,6 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.2)
-    rswag-api (2.16.0)
-      activesupport (>= 5.2, < 8.1)
-      railties (>= 5.2, < 8.1)
-    rswag-specs (2.16.0)
-      activesupport (>= 5.2, < 8.1)
-      json-schema (>= 2.2, < 6.0)
-      railties (>= 5.2, < 8.1)
-      rspec-core (>= 2.14)
-    rswag-ui (2.16.0)
-      actionpack (>= 5.2, < 8.1)
-      railties (>= 5.2, < 8.1)
     securerandom (0.4.1)
     stringio (3.1.3)
     thor (1.3.2)
@@ -264,9 +247,6 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.5, >= 7.1.5.1)
   rspec-rails
-  rswag-api
-  rswag-specs
-  rswag-ui
   tzinfo-data
 
 RUBY VERSION
