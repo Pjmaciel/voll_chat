@@ -33,6 +33,7 @@ gem "bootsnap", require: false
 
 gem "rack-cors"
 gem 'active_model_serializers'
+gem 'jwt'
 
 
 group :development, :test do
