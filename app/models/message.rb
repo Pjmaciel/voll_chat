@@ -6,9 +6,6 @@ class Message < ApplicationRecord
   validates :sender, presence: true
   validates :recipient, presence: true
 
-  after_create_commit do
-    broadcast_message
-  end
 
   scope :between_users, ->(user1_id, user2_id) do
     where(sender_id: [user1_id, user2_id], recipient_id: [user1_id, user2_id])
@@ -16,14 +13,5 @@ class Message < ApplicationRecord
 
   private
 
-  def broadcast_message
-    ActionCable.server.broadcast(
-      "chat_#{recipient.id}",
-      {
-        sender: sender.email,
-        content: content,
-        timestamp: created_at.strftime("%H:%M")
-      }
-    )
-  end
+
 end

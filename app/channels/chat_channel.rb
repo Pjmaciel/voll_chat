@@ -15,8 +15,9 @@ class ChatChannel < ApplicationCable::Channel
       recipient_id: data['recipient_id']
     )
 
+    # Broadcast das mensagens para o WebSocket do destinatário
     ChatChannel.broadcast_to(
-      message.recipient,
+      message.recipient, # O destinatário recebe no canal
       {
         id: message.id,
         content: message.content,
