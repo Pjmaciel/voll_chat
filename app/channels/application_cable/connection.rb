@@ -1,4 +1,3 @@
-# app/channels/application_cable/connection.rb
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
@@ -10,12 +9,18 @@ module ApplicationCable
     private
 
     def find_verified_user
-      token = params[:token] || request.headers[:HTTP_AUTHORIZATION]&.split(' ')&.last
-      return reject_unauthorized_connection unless token
+      token = request.query_parameters['token']
+      Rails.logger.info "WS Token recebido: #{token}" # Adicione este log
 
-      decoded_token = JsonWebToken.decode(token)
-      User.find(decoded_token[:user_id])
-    rescue JWT::DecodeError, ActiveRecord::RecordNotFound
+      if token
+        decoded_token = JsonWebToken.decode(token)
+        user = User.find(decoded_token[:user_id])
+        return user if user
+      end
+
+      reject_unauthorized_connection
+    rescue JWT::DecodeError, ActiveRecord::RecordNotFound => e
+      Rails.logger.error "WS Auth Error: #{e.message}" # Adicione este log
       reject_unauthorized_connection
     end
   end
